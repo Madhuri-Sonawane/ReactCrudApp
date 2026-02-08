@@ -4,23 +4,25 @@ React User Management CRUD Application
 📌 Overview
 
 This is a React-based CRUD (Create, Read, Update, Delete) web application for managing user data.
-The application interacts with a REST API and is designed with future extensibility in mind, allowing new form fields to be added with minimal code changes.
+The application communicates with a REST API and is designed with future extensibility in mind, allowing new form fields to be added with minimal code changes.
 
-The project follows clean React coding standards, uses a configuration-driven form architecture, and provides proper input validation and user-friendly UI.
+The project follows clean React coding standards, uses a configuration-driven form architecture, and provides proper input validation with a user-friendly UI.
 
 ✨ Features
 
 Create, Read, Update, Delete users
 
-Form validation with required field enforcement
+Required field validation for all inputs
+
+Email format validation
 
 Country code selection with phone number validation
 
-Config-driven and extensible form architecture
+Config-driven and extensible form structure
 
-Clean and responsive UI using Material UI
+Clean UI using Material UI
 
-Mock REST API using JSON Server
+Fully deployed frontend and backend
 
 🧾 User Fields
 
@@ -34,17 +36,17 @@ Email Address (required, validated format)
 
 Phone Number
 
-Country code selected from dropdown
+Country code selected from the dropdown
 
 Exactly 10-digit phone number validation
 
 🔁 CRUD Operations
 
-The application supports the following operations via REST API:
+The application supports the following operations:
 
 Create User
 
-Read Users (List all users)
+Read Users (list all users)
 
 Update User
 
@@ -52,10 +54,10 @@ Delete User
 
 🔌 API Details
 
-This project uses a mock REST API powered by JSON Server.
+The frontend communicates with a mock REST API powered by JSON Server, deployed separately for production use.
 
-Base URL
-http://localhost:3001
+Backend Base URL
+https://react-crud-json-server-ljgs.onrender.com
 
 Endpoints
 Method	Endpoint	Description
@@ -64,8 +66,7 @@ POST	/users	Create new user
 PUT	/users/:id	Update user
 DELETE	/users/:id	Delete user
 
-The frontend communicates with the API using Axios.
-The API layer is abstracted, making it easy to replace the mock API with a real backend in the future.
+Axios is used for HTTP requests, and the API layer is abstracted to allow easy backend replacement in the future.
 
 🧠 Extensibility (Key Design Decision)
 
@@ -73,14 +74,12 @@ The form is built using a configuration-driven approach.
 
 Example: Adding a New Field
 
-To add a new field (e.g., Date of Birth):
-
 Open:
 
 src/config/userFormConfig.js
 
 
-Add a new field object:
+Add a new field:
 
 {
   name: "dob",
@@ -94,32 +93,32 @@ Add a new field object:
 
 Form UI logic
 
-Validation structure
+Validation logic
 
 API integration
 
-This design ensures scalability and maintainability.
+This ensures scalability and maintainability.
 
 🌍 Country Code & Phone Validation
 
-Country codes are selected from a dropdown (predefined list)
+Country codes are selected from a dropdown list
 
 Phone number input accepts only digits
 
 Exactly 10 digits are required
 
-Final stored phone format:
+Stored phone format:
 
 +<countryCode><10-digit-number>
 
 
-This approach avoids invalid country codes and provides a better user experience.
+This avoids invalid country codes and improves user experience.
 
 🎨 UI & UX
 
 Built using Material UI
 
-Clean layout with Navbar navigation
+Clean layout with top navigation
 
 Separate views for:
 
@@ -129,7 +128,7 @@ User List
 
 Hover effects on buttons and cards
 
-Delete confirmation for safety
+Delete confirmation dialog
 
 🛠️ Tech Stack
 
@@ -139,73 +138,32 @@ UI Library: Material UI
 
 HTTP Client: Axios
 
-Mock Backend: JSON Server
+Backend: JSON Server (hosted)
 
 Language: JavaScript
 
-⚙️ Setup Instructions
-1️⃣ Clone the repository
-git clone <your-github-repo-url>
-cd react-crud-user-management
-
-2️⃣ Install dependencies
+⚙️ Setup Instructions (Local)
+git clone https://github.com/Madhuri-Sonawane/ReactCrudApp
+cd ReactCrudApp
 npm install
-
-3️⃣ Start the mock API server
-npm run server
-
-4️⃣ Start the React application
 npm run dev
 
 🚀 Deployment
 
-The application can be deployed on platforms like:
+Frontend: Vercel
+👉 https://react-crud-app-gamma-nine.vercel.app/
 
-Vercel
-
-GitHub Pages
-
-The deployed link will be shared as part of the submission.
+Backend: JSON Server hosted on Render
 
 📌 Assumptions & Design Decisions
 
-JSON Server is used as a mock API for development and testing
+JSON Server is used as a mock backend for development and production
 
-Country code validation is handled via dropdown selection instead of regex
+Country code validation is handled via a dropdown instead of a regex
 
-Phone number length is standardized to 10 digits
+Phone number length standardized to 10 digits
 
-The app is designed to be API-agnostic for easy backend replacement
-
-📂 Project Structure (Simplified)
-src/
- ├─ api/
- │   └─ userApi.js
- ├─ components/
- │   ├─ Navbar.jsx
- │   ├─ UserForm.jsx
- │   └─ UserList.jsx
- ├─ config/
- │   ├─ userFormConfig.js
- │   └─ countryConfig.js
- ├─ App.jsx
- └─ main.jsx
-
-✅ Evaluation Checklist Alignment
-
-✔ Clean React coding standards
-
-✔ Accurate form validation
-
-✔ Proper API integration
-
-✔ Highly extensible architecture
-
-✔ Clean and intuitive UI
-
-✔ Ready for deployment
-
-✔ Git-friendly project structure
+Frontend is API-agnostic for easy backend replacement
 
 👤 Author
 
