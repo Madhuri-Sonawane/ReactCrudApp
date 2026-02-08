@@ -1,8 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3001/users";
+const API_URL = "https://69882d72780e8375a687b600.mockapi.io/ReactDrudAppV1/:endpoint";
 
 export const getUsers = () => axios.get(API_URL);
 export const createUser = (data) => axios.post(API_URL, data);
-export const updateUser = (id, data) => axios.put(`${API_URL}/${id}`, data);
-export const deleteUser = (id) => axios.delete(`${API_URL}/${id}`);
+export const updateUser = (id, data) =>
+  axios.put(`${API_URL}/${id}`, data);
+export const deleteUser = (id) =>
+  axios.delete(`${API_URL}/${id}`);
