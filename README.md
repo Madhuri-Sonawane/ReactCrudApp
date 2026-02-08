@@ -10,11 +10,9 @@ The project follows clean React coding standards, uses a configuration-driven fo
 
 ✨ Features
 
-Create, Read, Update, Delete users
+Create, Read, Update, and Delete users
 
 Required field validation for all inputs
-
-Email format validation
 
 Country code selection with phone number validation
 
