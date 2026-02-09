@@ -4,11 +4,17 @@ import UserList from "./components/UserList";
 import Navbar from "./components/Navbar";
 import { getUsers, createUser, updateUser, deleteUser } from "./api/userApi";
 import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Snackbar, Alert } from "@mui/material";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [view, setView] = useState("form"); // 👈 NEW
+ const [snackbar, setSnackbar] = useState({
+  open: false,
+  message: "",
+  severity: "success"
+});
 
   const fetchUsers = async () => {
     const res = await getUsers();
@@ -20,15 +26,32 @@ function App() {
   }, []);
 
   const handleSubmit = async (data) => {
+  try {
     if (data.id) {
       await updateUser(data.id, data);
+      setSnackbar({
+        open: true,
+        message: "User information updated successfully",
+        severity: "success"
+      });
     } else {
       await createUser(data);
+      setSnackbar({
+        open: true,
+        message: "User added successfully",
+        severity: "success"
+      });
     }
     setSelectedUser(null);
     fetchUsers();
-    setView("list"); // 👈 after submit, go to list
-  };
+  } catch (error) {
+    setSnackbar({
+      open: true,
+      message: "Something went wrong. Please try again.",
+      severity: "error"
+    });
+  }
+};
 
   const handleDelete = async (id) => {
     await deleteUser(id);
@@ -37,7 +60,7 @@ function App() {
 
   const handleEdit = (user) => {
     setSelectedUser(user);
-    setView("form"); // 👈 go back to form
+    setView("form");
   };
 
   return (
@@ -86,6 +109,20 @@ function App() {
           </CardContent>
         </Card>
       </Box>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+       <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          sx={{ width: "100%", mt:8 }}
+         >
+          {snackbar.message}
+       </Alert>
+    </Snackbar>
     </Box>
   );
 }
